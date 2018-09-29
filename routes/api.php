@@ -19,3 +19,10 @@ Route::post('register', 'API\UserController@register');
 Route::group(['middleware' => 'auth:api'], function(){
   Route::post('details', 'API\UserController@details');
 });
+//Entidades
+Route::resource('pulsera','PulseraController');
+Route::resource('pay_module', 'Pay_moduleController');
+//Relaciones
+Route::resource('pulsera_user', 'Pulsera_userController');
+Route::resource('user_payment', 'User_paymentController');
+Route::resource('user_transport_ubication', 'User_transport_ubicationController');

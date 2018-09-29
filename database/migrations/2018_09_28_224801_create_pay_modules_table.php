@@ -20,7 +20,7 @@ class CreatePayModulesTable extends Migration
             $table->string('modelo');
             $table->decimal('latitud',10,8);
             $table->decimal('longitud',11,8);
-            $table->text('observaciones');
+            $table->text('observaciones')->nullable();
             $table->timestamps();
         });
     }

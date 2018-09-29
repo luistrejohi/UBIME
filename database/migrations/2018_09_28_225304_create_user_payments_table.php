@@ -19,6 +19,7 @@ class CreateUserPaymentsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('module_id');
             $table->unsignedInteger('user_id');
+            $table->float('saldo', 8, 2)->nullable();
             $table->timestamps();
 
             $table->foreign('module_id')->references('id')->on('pay_modules');
