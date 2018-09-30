@@ -36,6 +36,10 @@ class PulseraController extends Controller
     public function store(Request $request)
     {
         //
+        $pulsera = new pulsera;
+        $pulsera->serial_number = $request->serial_number;
+        $pulsera->creado = new\DateTime();
+        $pulsera->save();
     }
 
     /**

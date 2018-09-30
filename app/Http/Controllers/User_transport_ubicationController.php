@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\User_transport_ubication;
+use App\Pay_module;
 use Illuminate\Http\Request;
 
 class User_transport_ubicationController extends Controller
@@ -50,9 +51,20 @@ class User_transport_ubicationController extends Controller
      * @param  \App\User_transport_ubication  $user_transport_ubication
      * @return \Illuminate\Http\Response
      */
-    public function show(User_transport_ubication $user_transport_ubication)
+    public function show($user_id)
     {
         //
+        $id_pay_module = User_transport_ubication::where('user_id',$user_id)->first();
+        $id_pay_module = $id_pay_module->module_id;
+        $pay_module = Pay_module::find($id_pay_module);
+        $ruta = $pay_module->ruta;
+        $latitud = $pay_module->latitud;
+        $longitud = $pay_module->longitud;
+        return response()->json(['id_module'=>$id_pay_module,
+                                 'ruta'=>$ruta,
+                                 'longitud'=>$longitud,
+                                 'latitud'=>$latitud], 200);
+
     }
 
     /**
@@ -84,8 +96,16 @@ class User_transport_ubicationController extends Controller
      * @param  \App\User_transport_ubication  $user_transport_ubication
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User_transport_ubication $user_transport_ubication)
+    public function destroy( $user_id)
     {
         //
+        $user_transport_ubication = User_transport_ubication::where('user_id',$user_id)->delete();
+        //$id = $user_transport_ubication->id;
+        //return response()->json(['Prueba'=>$id], 200);
+
+        //$user_transport_ubicationFinal= User_transport_ubication::find(2);
+
+        //$user_transport_ubicationFinal->delete();
+
     }
 }

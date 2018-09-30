@@ -86,13 +86,15 @@ class Pay_moduleController extends Controller
         //$pay_module->ruta=$request->ruta;
         //$pay_module->save();
         //
-        $ruta=Input::get('ruta');
+        $latitud=Input::get('latitud');
+        $longitud=Input::get('longitud');
         $pay_module= pay_module::find($id);
-        $pay_module->ruta=$ruta;
+        $pay_module->latitud=$latitud;
+        $pay_module->longitud=$longitud;
         $pay_module->save();
 
         //Pay_module::where('id', $id)->update($request->all());
-        return response()->json(['ok'=>'update','$pay_module'=>$ruta], 200);
+        return response()->json(['ok'=>$longitud,'$pay_module'=>$latitud], 200);
     }
 
     /**
